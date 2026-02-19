@@ -46,7 +46,9 @@ const roles = [
 ];
 
 export default function Hero() {
-  const { setRole } = useRole();
+  const { role, setRole } = useRole();
+const selectedRole = roles.find(r => r.key === role);
+
   const [isOpen, setIsOpen] = useState(false);
   const [heroIndex, setHeroIndex] = useState(0);
 
@@ -89,7 +91,7 @@ useEffect(() => {
   };
 
   return (
-   <section className="section" style={{ paddingTop: "7rem", paddingBottom: "2rem" }}>
+   <section className="section" style={{ paddingTop: "5rem", paddingBottom: "1rem" }}>
 
       <div className="container">
         <div
@@ -160,26 +162,40 @@ useEffect(() => {
             {/* HIRE ME AS */}
             <div
               style={{
-                marginTop: "3rem",
+                marginTop: "1rem",
                 position: "relative",
                 display: "inline-block"
               }}
             >
-              <button
-                onClick={() => setIsOpen((v) => !v)}
+                  <button
+              onClick={() => setIsOpen((v) => !v)}
+              style={{
+                padding: "1rem 2rem",
+                background:
+                  "linear-gradient(135deg, #4f46e5, #14b8a6)",
+                borderRadius: "30px",
+                border: "none",
+                fontWeight: 600,
+                cursor: "pointer",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.6rem"
+              }}
+            >
+              {selectedRole ? selectedRole.label : "Hire me as"}
+
+              <span
                 style={{
-                  padding: "1rem 2rem",
-                  background:
-                    "linear-gradient(135deg, #4f46e5, #14b8a6)",
-                  borderRadius: "30px",
-                  border: "none",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  color: "white"
+                  transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.2s ease",
+                  fontSize: "0.8rem"
                 }}
               >
-                Hire me as →
-              </button>
+                ▼
+              </span>
+            </button>
+
 
               {/* DROPDOWN */}
               <div
