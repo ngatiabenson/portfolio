@@ -135,7 +135,7 @@ useEffect(() => {
   </a>
   <br />
 
-  💼{" "}
+  
   <a
     href="https://www.linkedin.com/in/ngatiaben"
     target="_blank"
@@ -146,7 +146,7 @@ useEffect(() => {
   </a>
   <br />
 
-  💻{" "}
+
   <a
     href="https://github.com/mukuhaben"
     target="_blank"
