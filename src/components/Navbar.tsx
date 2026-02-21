@@ -3,13 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 
-
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [showTestimonials, setShowTestimonials] = useState(false);
 
-    return (
+  return (
     <>
       <nav
         style={{
@@ -27,9 +25,10 @@ export default function Navbar() {
           className="container"
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center", // centered desktop links
             alignItems: "center",
             padding: "1.2rem 0",
+            position: "relative", // needed for absolute hamburger
           }}
         >
           {/* Logo */}
@@ -42,88 +41,88 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            
           </Link>
 
           {/* Desktop Links */}
-                <div
-              className="desktop-menu"
-              style={{
-                gap: "2rem",
-                alignItems: "center",
-              }}
-            >
-
+          <div
+            className="desktop-menu"
+            style={{
+              gap: "2rem",
+              alignItems: "center",
+            }}
+          >
             <Link href="#hero" style={linkStyle}>
               Home
             </Link>
+
             <Link href="#work" style={linkStyle}>
               Relevant Works
             </Link>
-           
-           {/* Testimonials */}
-<div style={{ position: "relative" }}>
-  <span
-    style={{ ...linkStyle, cursor: "pointer" }}
-    onClick={() => setShowTestimonials(!showTestimonials)}
-  >
-    Testimonials
-  </span>
 
-  {showTestimonials && (
-    <div
-      style={{
-        position: "absolute",
-        top: "120%",
-        right: 0,
-        background: "var(--bg-panel)",
-        border: "1px solid var(--border-subtle)",
-        padding: "0.8rem",
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.6rem",
-        minWidth: "220px",
-      }}
-    >
-      
-      <a
-        href="/BENSON MUKUHA NGATIA.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={linkStyle}
-      >
-        Curriculum Vitae
-      </a>
-{/*
-      <a
-        href="/Academic Certificates.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={linkStyle}
-      >
-        Academic Certificates
-      </a>
-*/}
-      <a
-        href="/Proffesional Certificates.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={linkStyle}
-      >
-        Professional Certificates
-      </a>
-    </div>
-  )}
-</div>
+            {/* Testimonials */}
+            <div style={{ position: "relative" }}>
+              <span
+                style={{ ...linkStyle, cursor: "pointer" }}
+                onClick={() => setShowTestimonials(!showTestimonials)}
+              >
+                Testimonials
+              </span>
 
+              {showTestimonials && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "120%",
+                    right: 0,
+                    background: "var(--bg-panel)",
+                    border: "1px solid var(--border-subtle)",
+                    padding: "0.8rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.6rem",
+                    minWidth: "220px",
+                  }}
+                >
+                  <a
+                    href="/BENSON MUKUHA NGATIA.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={linkStyle}
+                  >
+                    Curriculum Vitae
+                  </a>
 
+                  {/*
+                  <a
+                    href="/Academic Certificates.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={linkStyle}
+                  >
+                    Academic Certificates
+                  </a>
+                  */}
+
+                  <a
+                    href="/Proffesional Certificates.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={linkStyle}
+                  >
+                    Professional Certificates
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Hamburger - LEFT aligned */}
           <button
             className="mobile-toggle"
             onClick={() => setOpen(true)}
             style={{
+              position: "absolute",
+              left: "1.5rem",
               fontSize: "1.5rem",
               background: "none",
               border: "none",
@@ -137,23 +136,23 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Slide Panel */}
-      <div
-             style={{
+  
+        <div
+          style={{
             position: "fixed",
             top: 0,
-            right: 0,
-            transform: open ? "translateX(0)" : "translateX(100%)",
+            left: 0, // changed from right to left
+            transform: open ? "translateX(0)" : "translateX(-100%)", // slide from left
             width: "260px",
             height: "100vh",
             background: "var(--bg-panel)",
             backdropFilter: "blur(10px)",
-            borderLeft: "1px solid var(--border-subtle)",
+            borderRight: "1px solid var(--border-subtle)", // border moved to right side
             padding: "2rem",
             transition: "transform 0.3s ease",
             zIndex: 1200,
           }}
-
-      >
+        >
         {/* Close Button */}
         <div style={{ textAlign: "right", marginBottom: "2rem" }}>
           <button
@@ -174,77 +173,82 @@ export default function Navbar() {
           <Link href="#hero" style={mobileLinkStyle} onClick={() => setOpen(false)}>
             Home
           </Link>
+
           <Link href="#work" style={mobileLinkStyle} onClick={() => setOpen(false)}>
-           Relevant Works
+            Relevant Works
           </Link>
-          
-         {/* Testimonials */}
-<span
-  style={{ ...mobileLinkStyle, cursor: "pointer" }}
-  onClick={() => setShowTestimonials(!showTestimonials)}
->
-  Testimonials
-</span>
 
-{showTestimonials && (
-  <div style={{ paddingLeft: "1rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
-    <a
-      href="/BENSON MUKUHA NGATIA.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={mobileLinkStyle}
-      onClick={() => setOpen(false)}
-    >
-      Curriculum Vitae
-    </a>
-{/*
-  {/*
-    <a
-      href="/Academic Certificates.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={mobileLinkStyle}
-      onClick={() => setOpen(false)}
-    >
-      Academic Certificates
-    </a>
-*/}
-    <a
-      href="/Proffesional Certificates.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={mobileLinkStyle}
-      onClick={() => setOpen(false)}
-    >
-      Professional Certificates
-    </a>
-  </div>
-)}
+          {/* Testimonials */}
+          <span
+            style={{ ...mobileLinkStyle, cursor: "pointer" }}
+            onClick={() => setShowTestimonials(!showTestimonials)}
+          >
+            Testimonials
+          </span>
 
+          {showTestimonials && (
+            <div
+              style={{
+                paddingLeft: "1rem",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+              }}
+            >
+              <a
+                href="/BENSON MUKUHA NGATIA.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={mobileLinkStyle}
+                onClick={() => setOpen(false)}
+              >
+                Curriculum Vitae
+              </a>
 
+              {/*
+              <a
+                href="/Academic Certificates.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={mobileLinkStyle}
+                onClick={() => setOpen(false)}
+              >
+                Academic Certificates
+              </a>
+              */}
+
+              <a
+                href="/Proffesional Certificates.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={mobileLinkStyle}
+                onClick={() => setOpen(false)}
+              >
+                Professional Certificates
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Responsive Rules */}
-     <style jsx>{`
+      <style jsx>{`
+        .desktop-menu {
+          display: flex;
+        }
+
+        @media (min-width: 900px) {
+          .mobile-toggle {
+            display: none;
+          }
+        }
+
+        @media (max-width: 899px) {
           .desktop-menu {
-            display: flex;
+            display: none;
           }
-
-          @media (min-width: 900px) {
-            .mobile-toggle {
-              display: none;
-            }
-          }
-
-          @media (max-width: 899px) {
-            .desktop-menu {
-              display: none;
-            }
-          }
-        `}
-      </style>
-
+        }
+      `}</style>
     </>
   );
 }
