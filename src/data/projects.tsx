@@ -71,6 +71,28 @@ roles: ["backend", "freelance","developer"],
     roles: ["software-developer", "frontend", "freelance"],
 
   },
+    {
+  slug: "Proffesional website",
+  title: " Professional Business website - (AGRICULTURE CONSULTING)",
+  shortDescription:
+    "Professional consulting website presenting agricultural advisory services and business information.",
+  overview:
+    "A professional website developed for an agriculture consulting firm to showcase services, industry expertise, and provide a clear contact pathway for potential clients.",
+
+  features: [
+    "Professional services presentation",
+    "Clean responsive layout",
+    "Structured service sections",
+    "Business contact interface",
+    "Optimized deployment on Vercel",
+  ],
+
+  tech: ["React", "Next.js", "TypeScript", "CSS"],
+
+  liveUrl: "https://agriculture-consulting.vercel.app/",
+
+  roles: ["developer", "frontend", "freelance"],
+},
   {
     slug: "Trek-N-Tread",
     title: "TREK & TREAD   - (Booking/Payment-Integrated Static website)",
@@ -90,4 +112,5 @@ roles: ["backend", "freelance","developer"],
     roles: ["developer", "backend", "freelance"],
 
   },
+
 ];
