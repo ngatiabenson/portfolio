@@ -52,25 +52,32 @@ liveUrl: "https://marketplace-ngatia.vercel.app/",
 roles: ["backend", "freelance","developer"],
 
   },
-  {
-    slug: "firstcrart-ecommerce",
-    title: "Responsive E-commerce Platform",
-    shortDescription:
-      "Full-featured e-commerce web application with structured product flows.",
-    overview:
-      "A responsive e-commerce application built with structured product listing flows aimed at showcasing frontend UI",
-    features: [
-      "Product listing and filtering",
-      "User interaction flows",
-      "Secure data handling",
-      "API integration",
-      "Responsive UI design",
-    ],
-    tech: ["React", "Material UI", "JavaScript"],
-    liveUrl: "https://firstcrart-d27e3.web.app",
-    roles: ["software-developer", "frontend", "freelance"],
+{
+  slug: "task-manager-api",
+  title: "Task Manager System - (Fullstack Laravel + Vue Application)",
+  shortDescription:
+    "A fullstack task management system with strict business rules, status workflows, and reporting.",
 
-  },
+  overview:
+    "A fullstack task management application built with Laravel and Vue, designed to enforce real-world business rules such as controlled status transitions, priority-based sorting, and structured reporting. The system demonstrates strong backend architecture with validation layers, database constraints, and a clean API-driven frontend.",
+
+  features: [
+    "Task creation with validation and constraints",
+    "Strict status workflow (pending → in_progress → done)",
+    "Priority-based sorting (high → low)",
+    "Composite uniqueness enforcement (title + due date)",
+    "RESTful API with Laravel",
+    "Daily report with aggregated task statistics",
+    "Dynamic frontend with Vue (no build tools)",
+    "Real-time UI updates via API integration",
+  ],
+
+  tech: ["Laravel", "PHP", "MySQL", "Vue.js", "JavaScript", "HTML", "CSS"],
+
+  liveUrl: "https://cytonn-ngatia2026.vercel.app/",
+
+  roles: ["developer", "fullstack", "backend-focused"],
+},
     {
   slug: "Proffesional website",
   title: " Professional Business website - (AGRICULTURE CONSULTING)",
