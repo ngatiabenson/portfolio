@@ -151,7 +151,7 @@ roles: [ "freelance","developer"],
   evidence: ["Lab Guides", "Assessment Records", "System Config Reports"],
   outcome: "Learners produced complete system design documentation and demonstrated CBET Level 6 competency in system analysis and design.",
   curriculum: ["KNEC Diploma ICT", "CDACC Level 5"],
-  lessonPlanUrl: "https://drive.google.com/drive/folders/1TCmyuNX9_YbMOQUxSARkz9W9fPCy9JNf",
+  lessonPlanUrl: "https://docs.google.com/document/d/1vuWfJl5deD9mO3RobX1pFe42D6Z7j79wQ8pSMmgL5ok/edit?usp=sharing",
   liveUrl: "",
   roles: ["instructor"]
 },
