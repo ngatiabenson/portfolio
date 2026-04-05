@@ -9,58 +9,116 @@ export default function RelevantWorkSection() {
   if (!role) return null;
 
   // Instructor view
-  if (role === "instructor") {
-    return (
-      <section
-              className="section"
-              style={{
-              padding: "1rem 0",
-              borderTop: "1px solid var(--border-subtle)"
-            }}
-     >
-        <div className="container">
-              <h2 className="section-title">Teaching Portfolio</h2>
+  
+if (role === "instructor") {
+  const filtered = projects.filter((p) =>
+    p.roles.includes("instructor")
+  );
 
-              <p>
-                Structured curriculum development and instruction in
-                programming, system design, and ICT disciplines.
-                Course materials and teaching frameworks are currently
-                under active development.
-              </p>
-          
-        </div>
-      </section>
-    );
-  }
+  return (
+    <section
+      className="section"
+      style={{
+        padding: "1rem 0",
+        borderTop: "0px solid var(--border-subtle)",
+      }}
+    >
+      <div className="container fade-up" key={role}>
+        <h2 className="section-title">Teaching Portfolio</h2>
 
-// ICT officer role/view:
+        <p style={{ marginBottom: "2rem", maxWidth: "700px" }}>
+          I train ICT learners using Competency-Based Education and Training (CBET), 
+          ensuring each session builds measurable, industry-aligned skills.
+          My approach is hands-on and project-driven—students apply concepts in real systems 
+          through practical labs and performance-based assessment.
 
-  if (role === "ict officer") {
-    return (
-      <section
-              className="section"
-              style={{
-              padding: "1rem 0",
-              borderTop: "1px solid var(--border-subtle)"
-            }}
-     >
-        <div className="container">
-              <h2 className="section-title">ICT officer Portfolio</h2>
+        </p>
 
-              <p>
-                  Beyond development, I have supported LAN infrastructure, managed
-                  institutional ICT laboratories, and supervised technical capstone
-                  projects — bridging systems engineering and education.Certified CCNA, Netwroking Technician with 
-                  experience working for the goverment of Kenya
-        
-              </p>
-          
-        </div>
-      </section>
-    );
-  }
+        {filtered.length === 0 ? (
+          <p>Teaching-related projects are currently being added.</p>
+        ) : (
+          <div className="projects-grid">
+            {filtered.map((project) => (
+              <div
+                key={project.slug}
+                className="glass card-hover"
+                style={{ padding: "2rem" }}
+              >
+                <h3 style={{ marginBottom: "0.5rem" }}>
+                  {project.title}
+                </h3>
+
+                <p style={{ marginBottom: "1.5rem" }}>
+                  {project.shortDescription}
+                </p>
+
+                {/* Evidence tags 
+                {project.evidence && (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "0.5rem",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    {project.evidence.map((e) => (
+                      <span key={e} className="tech-tag">
+                        {e}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                  */}
+
+                {/* Curriculum styled like tech */}
+               
+                    {project.curriculum && project.curriculum.length > 0 && (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: "0.5rem",
+                          paddingTop: "1rem",
+                          borderTop: "1px solid var(--border-subtle)",
+                          marginBottom: "1.5rem",
+                        }}
+                      >
+                        {project.curriculum.map((c) => (
+                          <span key={c} className="tech-tag">
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
 
+                {/* CTA */}
+                <p style={{ fontSize: "0.85rem", opacity: 0.7 }}>
+  Includes Schemes of work, lesson plan, lab guide, and assessment rubric
+</p>
+
+                <a
+                  href={project.lessonPlanUrl}
+                  target="_blank"
+                  style={{
+                    color: "var(--accent-secondary)",
+                    fontWeight: 500,
+                  }}
+                >
+                  View Teaching Materials →
+                </a>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+
+//ICT OFFICER
   const filtered = projects.filter((p) =>
     p.roles.includes(role)
   );
@@ -94,22 +152,25 @@ export default function RelevantWorkSection() {
             {project.shortDescription}
           </p>
 
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "0.5rem",
-              paddingTop: "1rem",
-              borderTop: "1px solid var(--border-subtle)",
-              marginBottom: "1.5rem",
-            }}
-          >
-            {project.tech.map((t) => (
-              <span key={t} className="tech-tag">
-                {t}
-              </span>
-            ))}
-          </div>
+          {/* TECH TAGS (RESTORED) */}
+          {project.tech && project.tech.length > 0 && (
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "0.5rem",
+                paddingTop: "1rem",
+                borderTop: "1px solid var(--border-subtle)",
+                marginBottom: "1.5rem",
+              }}
+            >
+              {project.tech.map((t) => (
+                <span key={t} className="tech-tag">
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
 
           <a
             href={project.liveUrl}

@@ -2,17 +2,29 @@ export interface Project {
   slug: string;
   title: string;
   shortDescription: string;
-  overview: string;
+
+  // Developer fields
+  overview?: string;
   problem?: string;
   architecture?: string;
   challenges?: string;
   role?: string;
   impact?: string;
-  features: string[];
-  tech: string[];
-  liveUrl: string;
+
+  features?: string[];
+  tech?: string[];
+  liveUrl?: string;
+
+  // Instructor fields
+  evidence?: string[];
+  outcome?: string;
+  curriculum?: string[];
+  lessonPlanUrl?: string;
+
   roles: string[];
+  
 }
+
 
 
 
@@ -49,7 +61,7 @@ impact:
     ],
     tech: ["React", "Node.js", "Express", "SQL", "REST APIs"],
 liveUrl: "https://marketplace-ngatia.vercel.app/",
-roles: ["backend", "freelance","developer"],
+roles: [ "freelance","developer"],
 
   },
 {
@@ -76,10 +88,10 @@ roles: ["backend", "freelance","developer"],
 
   liveUrl: "https://cytonn-ngatia2026.vercel.app/",
 
-  roles: ["developer", "fullstack", "backend-focused"],
+  roles: ["developer"],
 },
     {
-  slug: "Proffesional website",
+  slug: "Proffesional-website",
   title: " Professional Business website - (AGRICULTURE CONSULTING)",
   shortDescription:
     "Professional consulting website presenting agricultural advisory services and business information.",
@@ -98,7 +110,7 @@ roles: ["backend", "freelance","developer"],
 
   liveUrl: "https://agriculture-consulting.vercel.app/",
 
-  roles: ["developer", "frontend", "freelance"],
+  roles: ["developer", "freelance"],
 },
   {
     slug: "Trek-N-Tread",
@@ -116,8 +128,45 @@ roles: ["backend", "freelance","developer"],
     ],
     tech: ["HTML", "CSS", "JavaScript", "Paystack API"],
     liveUrl: "https://outdoor-1.onrender.com",
-    roles: ["developer", "backend", "freelance"],
+    roles: ["developer", "freelance"],
 
   },
+
+
+{
+  slug: "operating-systems-cbet",
+  title: "Operating Systems (Windows & Linux)",
+  shortDescription: "Conducted hands-on labs on OS installation, configuration, process management, and troubleshooting across Windows and Linux environments.",
+  evidence: ["Lab Guides", "Student Assessments", "Configuration Reports"],
+  outcome: "Students achieved CBET Level 5 competency in installing, configuring, and managing operating systems.",
+  curriculum: ["KNEC Diploma ICT", "CDACC ICT Technician Level 5"],
+  lessonPlanUrl: "https://drive.google.com/drive/folders/1TCmyuNX9_YbMOQUxSARkz9W9fPCy9JNf",
+  liveUrl: "",
+  roles: ["instructor"]
+},
+{
+  slug: "systems-analysis-design",
+  title: "Systems Analysis & Design",
+  shortDescription: "Facilitated CBET-aligned training on SDLC, feasibility studies, requirements analysis, and system modeling using real-world case studies.",
+  evidence: ["Lab Guides", "Assessment Records", "System Config Reports"],
+  outcome: "Learners produced complete system design documentation and demonstrated CBET Level 6 competency in system analysis and design.",
+  curriculum: ["KNEC Diploma ICT", "CDACC Level 5"],
+  lessonPlanUrl: "https://drive.google.com/drive/folders/1TCmyuNX9_YbMOQUxSARkz9W9fPCy9JNf",
+  liveUrl: "",
+  roles: ["instructor"]
+},
+{
+  slug: "oop-cbet",
+  title: "Object-Oriented Programming (Java & C#)",
+  shortDescription: "Delivered CBET-based training in object-oriented programming using Java and C#, emphasizing practical system development and modular design.",
+  evidence: ["Lab Guides", "Assessment Records", "System Config Reports"],
+  outcome: "Students achieved CBET Level 6 competency in applying object-oriented programming to real-world systems.",
+  curriculum: ["KNEC Diploma ICT", "CDACC ICT Technician Level 5"],
+  lessonPlanUrl: "https://drive.google.com/drive/folders/1TCmyuNX9_YbMOQUxSARkz9W9fPCy9JNf",
+  liveUrl: "",
+  roles: ["instructor"]
+}
+
+
 
 ];
