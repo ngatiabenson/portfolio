@@ -26,11 +26,9 @@ if (role === "instructor") {
       <div className="container fade-up" key={role}>
         <h2 className="section-title">Teaching Portfolio</h2>
 
-        <p style={{ marginBottom: "2rem", maxWidth: "700px" }}>
-          I train ICT learners using Competency-Based Education and Training (CBET), 
-          ensuring each session builds measurable, industry-aligned skills.
-          My approach is hands-on and project-driven—students apply concepts in real systems 
-          through practical labs and performance-based assessment.
+        <p style={{ marginBottom: "1rem", maxWidth: "700px" }}>
+            I teach Systems Analysis and Design (DICT 4202), Programming (DICT 4201 & DICT 4205), Database Management (DICT 4206), 
+            and Networking Fundamentals (DICT 4204), emphasizing practical skills and real-world problem solving.
 
         </p>
 
