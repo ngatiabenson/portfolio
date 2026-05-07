@@ -16,13 +16,17 @@ if (role === "instructor") {
   );
 
   return (
-    <section
-      className="section"
-      style={{
-        padding: "1rem 0",
-        borderTop: "0px solid var(--border-subtle)",
-      }}
-    >
+            
+      <section
+        id="work"   // <-- add this
+        className="section"
+        style={{
+          padding: "1rem 0",
+          borderTop: "0px solid var(--border-subtle)",
+        }}
+      >
+
+
       <div className="container fade-up" key={role}>
         <h2 className="section-title">Teaching Portfolio</h2>
 
@@ -70,7 +74,7 @@ if (role === "instructor") {
                   */}
 
                 {/* Curriculum styled like tech */}
-               
+
                     {project.curriculum && project.curriculum.length > 0 && (
                       <div
                         style={{

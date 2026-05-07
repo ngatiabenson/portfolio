@@ -65,7 +65,7 @@ export default function Navbar() {
                 style={{ ...linkStyle, cursor: "pointer" }}
                 onClick={() => setShowTestimonials(!showTestimonials)}
               >
-                Testimonials
+                Testimonials/Downloads
               </span>
 
               {showTestimonials && (
@@ -183,7 +183,7 @@ export default function Navbar() {
             style={{ ...mobileLinkStyle, cursor: "pointer" }}
             onClick={() => setShowTestimonials(!showTestimonials)}
           >
-            Testimonials
+            Testimonials/Downloads
           </span>
 
           {showTestimonials && (

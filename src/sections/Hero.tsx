@@ -91,7 +91,12 @@ useEffect(() => {
   };
 
   return (
-   <section className="section" style={{ paddingTop: "5rem", paddingBottom: "1rem" }}>
+   <section 
+  id="hero"  
+  className="section" 
+  style={{ paddingTop: "5rem", paddingBottom: "1rem" }}
+>
+
 
       <div className="container">
         <div

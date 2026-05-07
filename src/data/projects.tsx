@@ -64,33 +64,25 @@ liveUrl: "https://marketplace-ngatia.vercel.app/",
 roles: [ "freelance","developer"],
 
   },
-{
-  slug: "task-manager-api",
-  title: "Task Manager System - (Fullstack Laravel + Vue Application)",
+  {
+  slug: "norvex-pay",
+  title: "Norvex Pay – Payment Gateway Design Concept",
   shortDescription:
-    "A fullstack task management system with strict business rules, status workflows, and reporting.",
-
+    "A design prototype for a payment gateway website inspired by Neptune Fiduciaries Group’s corporate branding, focused on layout, branding, and user flow rather than backend functionality.",
   overview:
-    "A fullstack task management application built with Laravel and Vue, designed to enforce real-world business rules such as controlled status transitions, priority-based sorting, and structured reporting. The system demonstrates strong backend architecture with validation layers, database constraints, and a clean API-driven frontend.",
-
+    "This project was created as part of an internship task to showcase creativity in designing a payment gateway platform. The implementation emphasizes UI/UX design ideas, navigation flow, and branding alignment, while backend integrations remain uncooked.",
   features: [
-    "Task creation with validation and constraints",
-    "Strict status workflow (pending → in_progress → done)",
-    "Priority-based sorting (high → low)",
-    "Composite uniqueness enforcement (title + due date)",
-    "RESTful API with Laravel",
-    "Daily report with aggregated task statistics",
-    "Dynamic frontend with Vue (no build tools)",
-    "Real-time UI updates via API integration",
+    "Landing page with corporate-inspired design",
+    "Payment options section (Bank, M-Pesa, Card, PayPal)",
+    "Responsive layout prototype",
+    "Brand-consistent typography and color scheme"
   ],
-
-  tech: ["Laravel", "PHP", "MySQL", "Vue.js", "JavaScript", "HTML", "CSS"],
-
-  liveUrl: "https://cytonn-ngatia2026.vercel.app/",
-
-  roles: ["developer"],
+  tech: ["Next.js", "React", "TailwindCSS"],
+  curriculum: ["Case Study – UI/UX Design (Instructor)"],   // badge styled like KNEC/CDACC
+  liveUrl: "https://norvexpay.vercel.app/",
+  roles: ["developer"]   // now shows in both views
 },
-    {
+{
   slug: "Proffesional-website",
   title: " Professional Business website - (AGRICULTURE CONSULTING)",
   shortDescription:
@@ -131,7 +123,32 @@ roles: [ "freelance","developer"],
     roles: ["developer", "freelance"],
 
   },
+{
+  slug: "task-manager-api",
+  title: "Task Manager System - (Fullstack Laravel + Vue Application)",
+  shortDescription:
+    "A task management API with strict business rules, status workflows, and reporting.",
 
+  overview:
+    "A fullstack task management application built with Laravel and Vue, designed to enforce real-world business rules such as controlled status transitions, priority-based sorting, and structured reporting. The system demonstrates strong backend architecture with validation layers, database constraints, and a clean API-driven frontend.",
+
+  features: [
+    "Task creation with validation and constraints",
+    "Strict status workflow (pending → in_progress → done)",
+    "Priority-based sorting (high → low)",
+    "Composite uniqueness enforcement (title + due date)",
+    "RESTful API with Laravel",
+    "Daily report with aggregated task statistics",
+    "Dynamic frontend with Vue (no build tools)",
+    "Real-time UI updates via API integration",
+  ],
+
+  tech: ["Laravel", "PHP", "MySQL", "Vue.js", "JavaScript", "HTML", "CSS"],
+
+  liveUrl: "https://cytonn-ngatia2026.vercel.app/",
+
+  roles: ["developer"],
+},
 
 {
   slug: "database-management-cbet",
