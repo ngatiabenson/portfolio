@@ -45,36 +45,60 @@ const roles = [
       */
 ];
 
+// 👇 ADDITION 1: URL param mapping for shareable links
+const roleToUrlParam = {
+  developer: "dev",
+  instructor: "instructor",
+  "ICT Officer": "ict",
+};
+const urlParamToRole = Object.entries(roleToUrlParam).reduce(
+  (acc, [key, value]) => ({ ...acc, [value]: key }),
+  {} as Record<string, string>
+);
+
 export default function Hero() {
   const { role, setRole } = useRole();
-const selectedRole = roles.find(r => r.key === role);
+  const selectedRole = roles.find(r => r.key === role);
 
   const [isOpen, setIsOpen] = useState(false);
   const [heroIndex, setHeroIndex] = useState(0);
-
   const [isMobile, setIsMobile] = useState(false);
 
-
-
-    /*relevant work section developer to be default so projects show even when no role selected*/
+  /*relevant work section developer to be default so projects show even when no role selected*/
   useEffect(() => {
-  setRole("developer");
-}, [setRole]);
+    // 👇 ADDITION 2a: Read URL param on mount + fallback to default
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const urlRole = params.get("role");
+      if (urlRole && urlParamToRole[urlRole]) {
+        setRole(urlParamToRole[urlRole]);
+        return;
+      }
+    }
+    setRole("developer");
+  }, [setRole]);
 
+  // 👇 ADDITION 2b: Update URL when role changes (for shareability)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    if (role && roleToUrlParam[role]) {
+      params.set("role", roleToUrlParam[role]);
+    } else {
+      params.delete("role");
+    }
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+  }, [role]);
 
-useEffect(() => {
-  const checkScreen = () => {
-    setIsMobile(window.innerWidth < 768);
-  };
-
-
-
-  checkScreen();
-  window.addEventListener("resize", checkScreen);
-  return () => window.removeEventListener("resize", checkScreen);
-}, []);
-
-
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -89,6 +113,33 @@ useEffect(() => {
     setRole(key);
     setIsOpen(false);
   };
+
+  // 👇 ADDITION 3: Handler for pill buttons
+  const handlePillClick = (key: string) => {
+    setRole(key);
+  };
+
+  // 👇 ADDITION 4: Inline SVG icons (no dependencies)
+  const CodeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  );
+  const GraduationIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+      <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
+    </svg>
+  );
+  const ServerIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+      <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+      <line x1="6" y1="6" x2="6.01" y2="6" />
+      <line x1="6" y1="18" x2="6.01" y2="18" />
+    </svg>
+  );
 
   return (
    <section 
@@ -175,6 +226,63 @@ useEffect(() => {
   <br />
 </p>
 
+            {/* 👇 ADDITION 5: COMPACT: "I'm looking for…" Pill Selector */}
+            <div style={{ marginTop: "1rem", marginBottom: "0.75rem" }}>
+              <p style={{ 
+                fontSize: "0.85rem", 
+                color: "#94a3b8", 
+                marginBottom: "0.5rem",
+                fontWeight: 500
+              }}>
+                 Hire me as:
+              </p>
+              <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+                {[
+                  { key: "developer", Icon: CodeIcon, label: "Developer" },
+                  { key: "instructor", Icon: GraduationIcon, label: "Technical Trainer/Instructor" },
+                  { key: "ICT Officer", Icon: ServerIcon, label: "ICT Officer" }
+                ].map(({ key, Icon, label }) => {
+                  const isActive = role === key;
+                  return (
+                    <button
+                      key={key}
+                      onClick={() => handlePillClick(key)}
+                      aria-pressed={isActive}
+                      style={{
+                        padding: "0.45rem 0.9rem",
+                        fontSize: "0.82rem",
+                        fontWeight: isActive ? 600 : 500,
+                        borderRadius: "16px",
+                        border: isActive ? "1.5px solid #6366f1" : "1px solid rgba(255,255,255,0.12)",
+                        background: isActive ? "rgba(99, 102, 241, 0.12)" : "transparent",
+                        color: isActive ? "#a5b4fc" : "#cbd5e1",
+                        cursor: "pointer",
+                        transition: "all 0.15s ease",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        whiteSpace: "nowrap"
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isActive) {
+                          e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+                          e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isActive) {
+                          e.currentTarget.style.background = "transparent";
+                          e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
+                        }
+                      }}
+                    >
+                      <Icon width={14} height={14} aria-hidden="true" />
+                      <span>{label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
             {/* HIRE ME AS */}
             <div
