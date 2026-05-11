@@ -48,7 +48,7 @@ const roles: {
     description:
       "Designing modular, maintainable systems aligned with enterprise needs and long-term scalability."
   }
-      */
+  */
 ];
 
 // 👇 ADDITION 1: URL param mapping for shareable links
@@ -59,19 +59,23 @@ const roleToUrlParam = {
 } as const;
 
 const urlParamToRole = Object.entries(roleToUrlParam).reduce(
-  (acc, [key, value]) => ({ ...acc, [value]: key as RoleKey }),
+  (acc, [key, value]) => ({
+    ...acc,
+    [value]: key as RoleKey
+  }),
   {} as Record<string, RoleKey>
 );
 
 export default function Hero() {
   const { role, setRole } = useRole();
-  const selectedRole = roles.find(r => r.key === role);
+
+  const selectedRole = roles.find((r) => r.key === role);
 
   const [isOpen, setIsOpen] = useState(false);
   const [heroIndex, setHeroIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  /*relevant work section developer to be default so projects show even when no role selected*/
+  /* relevant work section developer to be default so projects show even when no role selected */
   useEffect(() => {
     // 👇 ADDITION 2a: Read URL param on mount + fallback to default
     if (typeof window !== "undefined") {
@@ -103,6 +107,7 @@ export default function Hero() {
     }
 
     const newUrl = `${window.location.pathname}?${params.toString()}`;
+
     window.history.replaceState({}, "", newUrl);
   }, [role]);
 
@@ -222,6 +227,7 @@ export default function Hero() {
               >
                 0707501094
               </a>
+
               <br />
 
               ✉️{" "}
@@ -230,7 +236,8 @@ export default function Hero() {
                 style={{ color: "#cbd5e1", textDecoration: "none" }}
               >
                 mukuhabenson@gmail.com
-              </a>{" "}
+              </a>
+
               <br />
 
               <a
@@ -239,6 +246,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 style={{ color: "#cbd5e1", textDecoration: "none" }}
               >
+                {/* LinkedIn SVG */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -259,6 +267,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 style={{ color: "#cbd5e1", textDecoration: "none" }}
               >
+                {/* GitHub SVG */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -273,7 +282,199 @@ export default function Hero() {
 
               <br />
             </p>
+
+            {/* 👇 ADDITION 5: COMPACT: "I'm looking for…" Pill Selector */}
+            <div style={{ marginTop: "1rem", marginBottom: "0.75rem" }}>
+              <p
+                style={{
+                  fontSize: "0.85rem",
+                  color: "#94a3b8",
+                  marginBottom: "0.5rem",
+                  fontWeight: 500
+                }}
+              >
+                Hire me as:
+              </p>
+
+              <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+                {[
+                  {
+                    key: "developer" as RoleKey,
+                    Icon: CodeIcon,
+                    label: "Developer"
+                  },
+                  {
+                    key: "instructor" as RoleKey,
+                    Icon: GraduationIcon,
+                    label: "Technical Trainer/Instructor"
+                  },
+                  {
+                    key: "ICT Officer" as RoleKey,
+                    Icon: ServerIcon,
+                    label: "ICT Officer"
+                  }
+                ].map(({ key, Icon, label }) => {
+                  const isActive = role === key;
+
+                  return (
+                    <button
+                      key={key}
+                      onClick={() => handlePillClick(key)}
+                      aria-pressed={isActive}
+                      style={{
+                        padding: "0.45rem 0.9rem",
+                        fontSize: "0.82rem",
+                        fontWeight: isActive ? 600 : 500,
+                        borderRadius: "16px",
+                        border: isActive
+                          ? "1.5px solid #6366f1"
+                          : "1px solid rgba(255,255,255,0.12)",
+                        background: isActive
+                          ? "rgba(99, 102, 241, 0.12)"
+                          : "transparent",
+                        color: isActive ? "#a5b4fc" : "#cbd5e1",
+                        cursor: "pointer",
+                        transition: "all 0.15s ease",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        whiteSpace: "nowrap"
+                      }}
+                    >
+                      <Icon width={14} height={14} aria-hidden="true" />
+                      <span>{label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* HIRE ME AS */}
+            <div
+              style={{
+                marginTop: "1rem",
+                position: "relative",
+                display: "inline-block"
+              }}
+            >
+              <button
+                onClick={() => setIsOpen((v) => !v)}
+                style={{
+                  padding: "1rem 2rem",
+                  background:
+                    "linear-gradient(135deg, #4f46e5, #14b8a6)",
+                  borderRadius: "30px",
+                  border: "none",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.6rem"
+                }}
+              >
+                {selectedRole ? selectedRole.label : "Hire me as"}
+
+                <span
+                  style={{
+                    transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 0.2s ease",
+                    fontSize: "0.8rem"
+                  }}
+                >
+                  ▼
+                </span>
+              </button>
+
+              {/* DROPDOWN */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: isMobile ? "100%" : "0",
+                  left: isMobile ? "0" : "100%",
+                  marginTop: isMobile ? "12px" : "0",
+                  marginLeft: isMobile ? "0" : "12px",
+
+                  opacity: isOpen ? 1 : 0,
+                  transform: isOpen
+                    ? "translateY(0)"
+                    : "translateY(-8px)",
+                  pointerEvents: isOpen ? "auto" : "none",
+                  transition: "opacity 0.25s ease, transform 0.25s ease",
+
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.5rem",
+
+                  background: "rgba(15, 23, 42, 0.95)",
+                  padding: "1rem",
+                  borderRadius: "12px",
+                  backdropFilter: "blur(8px)",
+                  minWidth: "240px",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+                  zIndex: 20
+                }}
+              >
+                {roles.map((r, i) => (
+                  <button
+                    key={r.key}
+                    onClick={() => handleRoleClick(r.key)}
+                    className={isOpen ? "animate-slideInLeft" : ""}
+                    style={{
+                      animationDelay: `${i * 100}ms`,
+                      padding: "0.6rem 1rem",
+                      fontSize: "0.9rem",
+                      cursor: "pointer",
+                      borderRadius: "8px",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      background: "transparent",
+                      color: "white",
+                      textAlign: "left",
+                      transition: "0.2s ease"
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.background =
+                        "rgba(255,255,255,0.08)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.background =
+                        "transparent")
+                    }
+                  >
+                    {r.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
+
+{/* RIGHT */}
+{!isMobile && (
+  <div
+    key={heroIndex}
+    style={{
+      minHeight: "220px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      gap: "1rem"
+    }}
+  >
+    <h3 style={{ fontSize: "1.8rem", fontWeight: 700 }}>
+      {activeHeroRole.label}
+    </h3>
+
+    <p
+      style={{
+        fontSize: "1rem",
+        color: "var(--text-secondary)",
+        maxWidth: "100%"
+      }}
+    >
+      {activeHeroRole.description}
+    </p>
+  </div>
+)}
         </div>
       </div>
     </section>
